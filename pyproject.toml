@@ -1,0 +1,24 @@
+[project]
+name = "learn-open-table-format"
+version = "0.1.0"
+description = "Open Table Format (Apache Iceberg / Delta Lake) hands-on with local Python notebooks"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "deltalake>=1.0.0",
+    "duckdb>=1.2.0",
+    "faker>=35.0.0",
+    "fastavro>=1.10.0",
+    "jupyterlab>=4.3.0",
+    "pandas>=2.2.0",
+    "polars>=1.20.0",
+    "pyarrow>=18.0.0",
+    "pyiceberg[duckdb,pandas,pyarrow,pyiceberg-core,sql-sqlite]>=0.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.0",
+    "nbconvert>=7.16.0",
+    "nbformat>=5.10.0",
+]

@@ -1,0 +1,14 @@
+# Python virtual environment & caches
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables (contains personal GCP project/bucket names)
+.env
+.env.*
+!.env.example
+
+# Local generated data & lakehouse storage
+data/
+storage/
