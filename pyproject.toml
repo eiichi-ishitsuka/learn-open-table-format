@@ -5,15 +5,21 @@ description = "Open Table Format (Apache Iceberg / Delta Lake) hands-on with loc
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "db-dtypes>=1.9.0",
     "deltalake>=1.0.0",
     "duckdb>=1.2.0",
     "faker>=35.0.0",
     "fastavro>=1.10.0",
+    "gcsfs>=2026.10.1",
+    "google-auth>=2.63.0",
+    "google-cloud-bigquery>=3.47.0",
+    "google-cloud-storage>=3.17.1",
     "jupyterlab>=4.3.0",
     "pandas>=2.2.0",
     "polars>=1.20.0",
     "pyarrow>=18.0.0",
     "pyiceberg[duckdb,pandas,pyarrow,pyiceberg-core,sql-sqlite]>=0.9.0",
+    "python-dotenv>=1.2.4",
 ]
 
 [dependency-groups]

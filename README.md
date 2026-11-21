@@ -1,8 +1,6 @@
 # Open Table Formats (Apache Iceberg) 設計ガイド・実践ハンズオン
 
-このリポジトリは、Open Table Formats（OTF）の標準フォーマットである Apache Iceberg について、アーキテクチャ設計・移行戦略を解説する「読み物（実践設計・移行ガイド）」と、ローカルの Python ノートブックで3層メタデータ構造・ガバナンス・運用保守を検証する「ハンズオン教材」をまとめたものです。
-
-学習の進め方や環境構築の手順は `docs/` 配下に整理しています。目的に応じて以下のドキュメントを参照してください。
+このリポジトリは、Open Table Formats（OTF）の標準フォーマットである Apache Iceberg について、アーキテクチャ設計・移行戦略を解説する「読み物（実践設計・移行ガイド）」と、Google Cloud（GCS / BigLake Metastore / BigQuery）× PyIceberg で自動スキーマ進化と Upsert を体験する「GCP 実機ハンズオン」をまとめたものです。
 
 ## ドキュメント構成
 
@@ -18,16 +16,13 @@
   - [第5章: データガバナンス実装（スキーマ進化・PII 消去・WAP）](./docs/guides/05_governance_schema_pii_wap.md)
   - [第6章: 段階的移行（Strangler Fig）と運用・FinOps](./docs/guides/06_migration_and_operations.md)
 
-### 2. ハンズオン（ローカル完結・Jupyter ノートブック）
+### 2. ハンズオン（GCP 実機: Apache Iceberg × BigQuery）
 
-読み物の各章と連動し、`pyiceberg`・`deltalake`・`polars`・`duckdb` を用いて架空企業「Usagi Craft & Cafe」のデータを題材に OTF の内部動作・ガバナンス・ディメンショナルモデリングを検証する全 7 冊のノートブックです。ノートブックは未実行の状態で格納しているため、手元の環境で `00` から順に実行して動作を確認できます。
+実際の Google Cloud（GCS / BigLake Metastore / BigQuery）上で、CSV からの自動スキーマ進化（3 列目へのカラム追加）・列欠損時の `NULL` 補完・Upsert・タイムトラベルをコード変更なしで体験する実践ハンズオンです。
 
-- [学習手順・環境構築: OTF 実践ハンズオン](./docs/handson/00_learning_plan.md)
-- [架空ビジネスとデータ仕様（Usagi Craft & Cafe）](./docs/handson/01_business_and_data_spec.md)
-  - [00: 環境初期化とサンプルデータ生成](./notebooks/00_setup_and_data_generation.ipynb)
-  - [01: OTF の 3 層構造とメタデータ解剖（Iceberg / Delta Lake）](./notebooks/01_otf_anatomy_and_3layers.ipynb)
-  - [02: 日次全件スナップショットの最適化（Upsert と SCD Type 2）](./notebooks/02_snapshot_upsert_and_scd2.ipynb)
-  - [03: スキーマ進化（Schema Evolution）とドリフト耐性](./notebooks/03_schema_drift_and_evolution.ipynb)
-  - [04: PII 保護・遡及削除（GDPR/CCPA）とタイムトラベル](./notebooks/04_pii_governance_and_time_travel.ipynb)
-  - [05: ディメンショナルモデリング（Gold 層）と WAP パターン](./notebooks/05_wap_and_dimensional_modeling.ipynb)
-  - [06: メンテナンス（Compaction）と GCP / Airflow 実践リファレンス](./notebooks/06_maintenance_and_gcp_airflow_guide.ipynb)
+- **01: PyIceberg × BigLake Metastore（Iceberg REST Catalog）版**（軽量・マルチエンジン向け）
+  - [手順書 01](./docs/handson/01_gcp_pyiceberg_biglake_handson.md)
+  - [01: PyIceberg × BigLake Metastore × BigQuery ハンズオン](./notebooks/01_gcp_pyiceberg_biglake_schema_evolution.ipynb)
+- **02: BigQuery 管理 Iceberg テーブル版**（大規模 CSV 分散ロード・`MERGE` 向け）
+  - [手順書 02](./docs/handson/02_gcp_bigquery_managed_iceberg_handson.md)
+  - [02: BigQuery 管理 Iceberg テーブル ハンズオン](./notebooks/02_gcp_bigquery_managed_iceberg_schema_evolution.ipynb)
